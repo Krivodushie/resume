@@ -1,0 +1,458 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+html, body {
+	height: 100%;
+	margin: 0;
+}
+
+body {
+	font-family: 'Montserrat', sans-serif;
+	background-color: var(--bckg-1);
+	overflow-y: auto;
+	overflow-x: auto;
+	scrollbar-width: thin;
+	background-image: url(http://d.zaix.ru/JrIu.png);
+	background-size: 10%;
+	background-attachment: fixed;
+}
+
+#content {
+	height: 100%;
+}
+
+::-webkit-scrollbar {
+	width: 8px;
+}
+
+::-webkit-scrollbar-track {
+	background: var(--bckg-1) !important;
+	border-radius: 0px !important;
+}
+
+::-webkit-scrollbar-thumb {
+	background: var(--bckg-6) !important;
+	border-radius: 3px !important;
+}
+
+#main-info {
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	color: var(--txt-1);
+	font-size: 1.45em;
+	float: left;
+	width: 310px;
+	height: 100vh;
+	padding: 20px;
+	background-color: var(--bckg-2);
+	z-index: 2;
+	position: fixed;
+}
+
+#main-info>div {
+	position: absolute;
+	font-size: 17px;
+	left: 0;
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	align-content: center;
+	background: var(--bckg-5);
+	width: 350px;
+	padding: 5px 0px;
+	margin: 20px 0px 0px 0px;
+}
+
+#main-info a {
+	color: var(--txt-1);
+}
+
+#main-info a:hover {
+	color: var(--txt-2);
+}
+
+.info {
+	color: var(--txt-2);
+}
+
+.info:not(:first-of-type)::before {
+	content: '✧ ';
+}
+
+#main-content {
+	color: var(--txt-1);
+	text-align: center;
+	height: 100%;
+	position: absolute;
+	left: 350px;
+	width: calc(100% - 350px);
+	z-index: 1;
+	animation: slide-in-left 0.45s ease-in-out;
+}
+
+#avatar {
+	width: 300px;
+	height: 300px;
+	border-radius: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	outline: 4px dashed var(--brdr-4);
+}
+
+#avatar>img {
+	width: 97.5%;
+	height: 97.5%;
+	border-radius: 50%;
+	-moz-force-broken-image-icon: 0;
+	background-color: var(--brdr-1);
+	position: relative;
+	user-select: none;
+	-webkit-user-drag: none;
+}
+
+#group-content {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 10px;
+	transition: all 0.3s ease;
+}
+
+#group-content > div {
+	display: none;
+}
+
+.item {
+	display: inline-grid;
+	background-color: var(--bckg-4);
+	height: 130px;
+	color: var(--txt-2);
+	border-radius: 10px;
+	margin: 5px;
+	transition: background-color 0.3s ease, transform 0.3s ease;
+	padding: 5px 0px;
+	align-items: start;
+	width: 450px;
+	grid-auto-rows: 35px;
+}
+
+.item span {
+	text-align: justify;
+	font-size: 14.5px;
+	margin: 10px 10px 0px 10px;
+}
+
+.item:hover {
+	background-color: #403964;
+	transition: background-color 0.3s ease;
+	color: #dadada;
+}
+
+.item>h2 {
+	height: 30px !important;
+	padding: 0px 0px 5px 0px;
+	border-bottom: 2px dashed var(--brdr-5);
+}
+
+.big-item {
+	display: inline-grid;
+	background-color: var(--bckg-4);
+	min-height: auto;
+	height: auto;
+	color: var(--txt-2);
+	border-radius: 10px;
+	margin: 5px;
+	transition: background-color 0.3s ease, transform 0.3s ease;
+	padding: 5px 0px;
+	align-items: start;
+	width: calc(100% - 100px);
+}
+
+.big-item span {
+	text-align: justify;
+	font-size: 14.5px;
+	margin: 10px 10px 0px 10px;
+	height: auto;
+}
+.big-item h2 {
+	text-align: justify;
+  position: relative;
+  left: 12px;
+}
+.big-item h2::before {
+	content: '↬ ';
+}
+.big-item h2::after {
+	content: ' ↫';
+}
+.big-item h2:not(:first-of-type) {
+  padding-top: 12px;
+}
+
+.big-item:hover {
+	background-color: #403964;
+	transition: background-color 0.3s ease;
+	color: #dadada;
+}
+
+.big-item span::before {
+	content: '✧ ';
+}
+
+#toggle-groups {
+	margin: 0px 0px 15px 0px;
+	font-size: 30px;
+}
+
+.toggle-header {
+	position: relative;
+	display: inline-block;
+	padding: 10px;
+	cursor: pointer;
+	opacity: 0.5;
+	font-weight: 600;
+	transition: opacity 0.5s ease;
+}
+
+.toggle-header.active {
+	opacity: 1;
+	transition: opacity 0.5s ease;
+}
+
+.toggle-header::after {
+	content: '';
+	position: absolute;
+	left: 0;
+	bottom: 6.5px;
+	width: 100%;
+	height: 2px;
+	background-color: var(--brdr-1);
+	transform: scaleX(0);
+	transition: transform 0.3s ease;
+}
+
+.toggle-header.active::after {
+	transform: scaleX(0.95);
+	background-color: var(--brdr-1);
+}
+
+.toggle-header.previous {
+	opacity: 0.5;
+	transition: opacity 0.3s ease, color 0.3s ease;
+}
+
+.toggle-header.previous.active {
+	opacity: 1;
+}
+
+#theme-switcher {
+	content: var(--theme-svg);
+	visibility: visible;
+	transform: scale(60%);
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	background: var(--bckg-7);
+	border-radius: 15px 3px;
+	padding: 2px;
+	border: 0;
+}
+
+#language-switcher {
+	visibility: visible;
+	transform: scale(60%);
+	position: fixed;
+	bottom: 0;
+	left: 50px;
+	background: var(--bckg-7);
+	border-radius: 15px 3px;
+	padding: 2px 8px;
+	border: 0;
+}
+
+/* Работа с состоянием боковушки */
+@keyframes stretch {
+	0% {
+		width: 310px;
+		height: 3000px;
+	}
+
+	100% {
+		width: 100%;
+		height: 3000px;
+	}
+}
+
+@keyframes compress {
+	0% {
+		width: 100%;
+		height: 100vh;
+	}
+
+	100% {
+		width: 310px;
+		height: 100vh;
+	}
+}
+
+@keyframes heightmin {
+	0% {
+		width: calc(100% - 40px);
+		height: 100vh;
+	}
+
+	100% {
+		width: calc(100% - 40px);
+		height: 400px;
+	}
+}
+
+@keyframes heightmax {
+	0% {
+		width: 100%;
+		height: 400px;
+	}
+
+	100% {
+		width: 100%;
+		height: 100vh;
+	}
+}
+
+/* Работа с опасити */
+@keyframes slide-out {
+ 
+	0% {
+		opacity: 1;
+	}
+
+	100% {
+		opacity: 0;
+	}
+}
+
+@keyframes slide-in {
+	0% {
+		opacity: 0;
+	}
+
+	100% {
+		opacity: 1;
+	}
+}
+
+/* Слайд ин и слайд аут (это ужас) */
+@keyframes slide-in-top {
+	0% {
+		transform: translateY(-100%);
+	}
+
+	100% {
+		transform: translateY(0);
+	}
+}
+
+@keyframes slide-out-top {
+	0% {
+		transform: translateY(0);
+	}
+
+	100% {
+		transform: translateY(-100%);
+	}
+}
+
+@keyframes slide-in-left {
+	0% {
+		transform: translateX(-100%);
+	}
+
+	100% {
+		transform: translateX(0);
+	}
+}
+
+@keyframes slide-out-left {
+	0% {
+		transform: translateX(0);
+	}
+
+	100% {
+		transform: translateX(-100%);
+	}
+}
+
+@keyframes slide-in-down {
+	0% {
+		transform: translateY(100%);
+	}
+
+	100% {
+		transform: translateY(0);
+	}
+}
+
+@keyframes slide-out-down {
+	0% {
+		transform: translateY(0);
+	}
+
+	100% {
+		transform: translateY(100%);
+	}
+}
+
+@keyframes slide-in-right {
+	0% {
+		transform: translateX(100%);
+	}
+
+	100% {
+		transform: translateX(0);
+	}
+}
+
+@keyframes slide-out-right {
+	0% {
+		transform: translateX(0);
+	}
+
+	100% {
+		transform: translateX(100%);
+	}
+}
+
+:root {
+	--bckg-1: #59517e;
+	--bckg-2: #7a759a;
+	--bckg-3: #806792;
+	--bckg-4: #28233d50;
+	--bckg-5: #948caf;
+	--bckg-6: #423e5a;
+	--bckg-7: #443d62;
+	--brdr-1: #f0f2f5;
+	--brdr-2: #3a393e;
+	--brdr-3: #3f3768;
+	--brdr-4: #b1adbf;
+	--brdr-5: #7a759a;
+	--scrl-1: #332f3c;
+	--scrl-2: #8d5353;
+	--inpt-1: #2e2c31;
+	--inpt-2: #2e2c31;
+	--bttn-1: #2e2c31;
+	--txt-1: #f0f2f5;
+	--txt-2: #dedede;
+	--txt-3: #bd5e5e;
+	--txt-4: #bcb7c2;
+	--txt-5: #a99bbf;
+	--theme-svg: url("data:image/svg+xml;charset=UTF-8,%3c!DOCTYPE svg PUBLIC '-//W3C//DTD SVG 1.1//EN' 'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'%3e%3c!-- Uploaded to: SVG Repo, www.svgrepo.com, Transformed by: SVG Repo Mixer Tools --%3e%3csvg width='70px' height='70px' viewBox='0 0 192 192' xmlns='http://www.w3.org/2000/svg' fill='none'%3e%3cg id='SVGRepo_bgCarrier' stroke-width='0'/%3e%3cg id='SVGRepo_tracerCarrier' stroke-linecap='round' stroke-linejoin='round'/%3e%3cg id='SVGRepo_iconCarrier'%3e%3cg clip-path='url(%23a)'%3e%3cpath stroke='%237a759a' stroke-linecap='round' stroke-linejoin='round' stroke-width='12' d='M96 22v30m24-30v36m-42 76v24a11.998 11.998 0 0 0 12 12h12c3.183 0 6.235-1.264 8.485-3.515A11.996 11.996 0 0 0 114 158v-24M48 96v20a11.998 11.998 0 0 0 12 12h72c3.183 0 6.235-1.264 8.485-3.515A11.996 11.996 0 0 0 144 116V96.149L48 96Zm0 0V46a24 24 0 0 1 24-24h72v74H48Z'/%3e%3c/g%3e%3cdefs%3e%3cclipPath id='a'%3e%3cpath fill='%23ffffff' d='M0 0h192v192H0z'/%3e%3c/clipPath%3e%3c/defs%3e%3c/g%3e%3c/svg%3e");
+	--lang-svg: url("data:image/svg+xml;charset=UTF-8,%3c!DOCTYPE svg PUBLIC '-//W3C//DTD SVG 1.1//EN' 'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'%3e%3c!-- Uploaded to: SVG Repo, www.svgrepo.com, Transformed by: SVG Repo Mixer Tools --%3e%3csvg fill='%237a759a' version='1.1' id='Layer_1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='70px' height='70px' viewBox='796 796 200 200' enable-background='new 796 796 200 200' xml:space='preserve'%3e%3cg id='SVGRepo_bgCarrier' stroke-width='0'/%3e%3cg id='SVGRepo_tracerCarrier' stroke-linecap='round' stroke-linejoin='round'/%3e%3cg id='SVGRepo_iconCarrier'%3e%3cg%3e%3cpath d='M973.166,818.5H818.833c-12.591,0-22.833,10.243-22.833,22.833v109.333c0,12.59,10.243,22.833,22.833,22.833h154.333 c12.59,0,22.834-10.243,22.834-22.833V841.333C996,828.743,985.756,818.5,973.166,818.5z M896,961.5h-77.167 c-5.973,0-10.833-4.859-10.833-10.833V841.333c0-5.974,4.86-10.833,10.833-10.833H896V961.5z M978.58,872.129 c-0.547,9.145-5.668,27.261-20.869,39.845c4.615,1.022,9.629,1.573,14.92,1.573v12c-10.551,0-20.238-1.919-28.469-5.325 c-7.689,3.301-16.969,5.325-28.125,5.325v-12c5.132,0,9.924-0.501,14.366-1.498c-8.412-7.016-13.382-16.311-13.382-26.78h11.999 c0,8.857,5.66,16.517,14.884,21.623c4.641-2.66,8.702-6.112,12.164-10.351c5.628-6.886,8.502-14.521,9.754-20.042h-49.785v-12 h22.297v-11.986h12V864.5h21.055c1.986,0,3.902,0.831,5.258,2.28C977.986,868.199,978.697,870.155,978.58,872.129z'/%3e%3cg%3e%3cg%3e%3cpath d='M839.035,914.262l-4.45,11.258h-15.971l26.355-61.09h15.971l25.746,61.09h-16.583l-4.363-11.258H839.035z M852.475,879.876l-8.902,22.604h17.629L852.475,879.876z'/%3e%3c/g%3e%3c/g%3e%3c/g%3e%3c/g%3e%3c/svg%3e");
+	--wid-thing: calc(100% - 325px);
+}
